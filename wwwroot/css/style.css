@@ -25,11 +25,11 @@ body {
 }
 
 .current {
-    background-color: #3eb128 !important;
+    background-color: #b5945c !important;
 }
 
 .current a {
-    color: white !important;
+    color: #f9f8de !important;
     font-weight: bold;
     font-size: 110%;
 }
@@ -121,16 +121,16 @@ body {
     text-align: center;
     position: relative;
     z-index: 2;
-    background-color: #121152;
+    background-color: #076a60;
 }
 
 .body {
     flex: 80%;
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: #e4f5e2;
+    background-color: #f9f8de;
     padding-left: 10px;
-    padding-top: 7vh;
+    padding-top: 1vh;
     padding-right: 10px;
     direction: rtl;
     text-align: center;
@@ -196,7 +196,7 @@ label[for="toggler"] {
     direction: rtl;
     margin-top: 15px;
     border-radius: 8px;
-    background-color: #7deafb;
+    background-color: #f9d9a3;
     height: 5vh;
     display: flex;
     align-items: center;
@@ -212,7 +212,7 @@ label[for="toggler"] {
 #options li a {
     font-style: normal;
     text-decoration: none;
-    color: #500226;
+    color: #076a60;
 }
 
 #options li:first-of-type {
@@ -257,19 +257,19 @@ label[for="toggler"] {
 }
 
 .edit button:hover {
-    background-color: #0c0b35;
+    background-color: #054d45;
 }
 
 .edit button:active {
-    background-color: #080727;
+    background-color: #03352f;
 }
 
 #options li:hover {
-    background-color: #58a2ad;
+    background-color: #b89f75;
 }
 
 #options li:active {
-    background-color: #437a83;
+    background-color: #94805d;
 }
 
 .list {
@@ -307,7 +307,7 @@ label[for="toggler"] {
     position: absolute;
     left: calc(50% + 78px);
     font-size: 140%;
-    color: #043a30;
+    color: #076a60;
 }
 
 .asker input {
@@ -315,11 +315,11 @@ label[for="toggler"] {
     text-align: center;
     width: 134px;
     font-size: 150%;
-    color: #1a1898;
-    background-color: #6be9fd;
+    color: #076a60;
+    background-color: #f9d9a3;
     border-style: solid;
     border-width: 2px;
-    border-color: #1a1898;
+    border-color: #076a60;
     font-family: open-sans;
     border-radius: 4px;
     position: absolute;
@@ -330,13 +330,14 @@ label[for="toggler"] {
 }
 
 .body h2 {
-    color: #1a1898;
+    color: #076a60;
+    margin-bottom: 11vh;
 }
 
 .asker button {
     font-size: 114%;
-    color: #f5f3c2;
-    background-color: #1b00ff;
+    color: #f9d9a3;
+    background-color: #076a60;
     border: none;
     border-radius: 8%;
     padding-left: 10px;
@@ -347,7 +348,7 @@ label[for="toggler"] {
 }
 
 .asker button:hover {
-    background-color: #10009e;
+    background-color: #06524a;
 }
 
 .spacer {
@@ -363,7 +364,7 @@ label[for="toggler"] {
 
 .result-stats {
     font-size: 1.2em;
-    margin-top: 22px;
+    margin-top: 14px;
     color: #043a30;
 }
 

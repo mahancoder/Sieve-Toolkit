@@ -55,7 +55,7 @@ namespace SieveToolkit
             var browseroptions = new ElectronNET.API.Entities.BrowserWindowOptions();
             browseroptions.AutoHideMenuBar = true;
             browseroptions.Title = "Sieve Toolkit";
-            Task.Run(async () => {var window = await Electron.WindowManager.CreateWindowAsync(loadUrl: $"https://localhost:{BridgeSettings.WebPort}", options: browseroptions); window.RemoveMenu(); window.Maximize(); });
+            Task.Run(async () => {var window = await Electron.WindowManager.CreateWindowAsync(options: browseroptions); window.RemoveMenu(); window.Maximize(); });
         }
     }
 }
