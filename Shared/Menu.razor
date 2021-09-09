@@ -1,0 +1,62 @@
+@inject IJSRuntime JS
+@code {
+    string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/SieveToolkit/order.txt";
+    string style = "display: none";
+    bool editing = false;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(appdata));
+            if (File.Exists(appdata))
+            {
+                await JS.InvokeVoidAsync("setList", await File.ReadAllTextAsync(appdata));
+            }
+        }
+    }
+
+    async Task edit()
+    {
+        editing = true;
+        await JS.InvokeVoidAsync("saveState");
+        await JS.InvokeVoidAsync("unlock");
+        style = "display: block;";
+    }
+    async Task cancel()
+    {
+        editing = false;
+        await JS.InvokeVoidAsync("revert");
+        style = "display: none;";
+    }
+    async Task save()
+    {
+        await JS.InvokeVoidAsync("lock");
+        await File.WriteAllTextAsync(appdata, await JS.InvokeAsync<string>("getList"));
+        editing = false;
+        style = "display: none;";
+    }
+}
+
+<div class="fader" style="@style">
+
+</div>
+<ul id="options">
+    <li><a href="/range">اعداد اول بین دو عدد</a></li>
+    <li><a href="/isprime">اول یا مرکب</a></li>
+    <li><a href="/divisors">شمارنده ها</a></li>
+    <li><a href="/firstremove">اولین عددی که خط میخورد</a></li>
+    <li><a href="/removedby">توسط چه عددی خط میخورد</a></li>
+    <li><a href="/nthremove">nامین عددی که توسط عدد خط میخورد</a></li>
+    <li><a href="/isnthremoved">چندمین عددیست که خط میخورد</a></li>
+</ul>
+<div class="edit">
+    @if (editing)
+    {
+        <button class="exit "@onclick="save"><img src="tick.png" /></button>
+        <button class="exit" @onclick="cancel"><img src="cancel-ico.png" /></button>
+    }
+    else
+    {
+        <button @onclick="edit"><img class="invert" src="edit-ico.png" /></button>
+    }
+</div>

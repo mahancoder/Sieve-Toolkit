@@ -1,0 +1,29 @@
+@page "/isprime"
+@code {
+    string result = "";
+    string style = "display: none;";
+    int num = 1;
+    Stopwatch stopwatch = new Stopwatch();
+    void Calculate()
+    {
+        stopwatch.Reset();
+        stopwatch.Start();
+        bool isPrime = Algorithms.IsPrime(num);
+        stopwatch.Stop();
+        result = isPrime ? "بله" : "خیر";
+        style = "display: block;";
+        StateHasChanged();
+    }
+}
+
+<h2>آیا این عدد اول است؟</h2>
+<div class="asker">
+    <label for="num">عدد:</label>
+    <input @bind="num" id="num" type="number" min="1" />
+    <div class="spacer"></div>
+    <button @onclick="Calculate">محاسبه</button>
+</div>
+<div id="result" style="@style">
+    <p class="answer">جواب: @result</p>
+    <p class="result-stats">زمان محاسبه: @stopwatch.ElapsedMilliseconds میلی ثانیه</p>
+</div>

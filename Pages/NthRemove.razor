@@ -1,0 +1,43 @@
+@page "/nthremove"
+@code {
+    string result = "";
+    string style = "display: none;";
+    int num = 2;
+    int start = 2;
+    int n = 1;
+    Stopwatch stopwatch = new Stopwatch();
+    void Calculate()
+    {
+        if (!Algorithms.IsPrime(num))
+        {
+            result = "این عدد اول نیست";
+            style = "display: block;";
+            StateHasChanged();
+            return;
+        }
+        stopwatch.Reset();
+        stopwatch.Start();
+        result = Algorithms.NthNumberRemovedBy(num, n, start).ToString();
+        stopwatch.Stop();
+        style = "display: block;";
+        StateHasChanged();
+    }
+}
+
+<h2>در غربال بین دو عدد nامین عددی که توسط این عدد خط میخورد چه عددیست؟</h2>
+<div class="asker">
+    <label for="start">شروع غربال:</label>
+    <input @bind="start" id="start" type="number" min="2" />
+    <div class="spacer"></div>
+    <label for="num">عدد:</label>
+    <input @bind="num" id="num" type="number" min="2" />
+    <div class="spacer"></div>
+    <label for="n">N:</label>
+    <input @bind="n" id="n" type="number" min="1" />
+    <div class="spacer"></div>
+    <button @onclick="Calculate">محاسبه</button>
+</div>
+<div id="result" style="@style">
+    <p class="answer">جواب: @result</p>
+    <p class="result-stats">زمان محاسبه: @stopwatch.ElapsedMilliseconds میلی ثانیه</p>
+</div>

@@ -1,0 +1,82 @@
+﻿@page "/"
+@namespace SieveToolkit.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sieve Toolkit</title>
+    <base href="~/" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    <div id="blazor-error-ui">
+        <p class="error-text">مشکلی پیش آمده است. برای ادامه کار برنامه را Reload نمایید</p>
+        <p class="dismiss"></p>
+        <a href="javascript:window.location.reload(true)" class="reload">Reload</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>if (window.module) module = window.module;</script>
+    <script>
+        var elem = null;
+        window.unlock = function () {
+            $("#options").sortable();
+            $("#options").sortable("enable");
+            document.querySelectorAll("#options li").forEach((e) => e.style = "cursor: move; background-image: url(\"../grip.png\"); background-size: 2.3vh; background-repeat: no-repeat; background-position: 3px center; font-size: 0.9vw;");
+        };
+        window.lock = function () {
+            $("#options").sortable("disable");
+            document.querySelectorAll("#options li").forEach((e) => e.style = "cursor: pointer;");
+        };
+        window.init = function () {
+            $("#options").sortable();
+            $("#options").disableSelection();
+            window.lock();
+            document.querySelectorAll("#options li").forEach((e) => 
+            { 
+                e.addEventListener("click", () => location.href = e.firstChild.href); 
+                if (e.firstChild.href == location.href) 
+                {
+                    e.classList.add("current"); 
+                } 
+            });
+        };
+        window.saveState = function () {
+            elem = document.getElementById("options").cloneNode(true);
+        };
+        window.revert = function () {
+            document.getElementById("options").replaceWith(elem);
+            init();
+        };
+        window.getList = function () {
+            var elem = document.getElementById("options").cloneNode(true);
+            for (var li of elem.children)
+            {
+                li.classList.remove("current");
+            }
+            return elem.outerHTML;
+        };
+        window.setList = function (list) {
+            var temp = document.createElement("template");
+            temp.innerHTML = list;
+            document.getElementById("options").replaceWith(temp.content.firstChild);
+            init();
+        };
+    </script>
+</body>
+
+</html>

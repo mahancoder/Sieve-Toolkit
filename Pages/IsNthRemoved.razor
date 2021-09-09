@@ -1,0 +1,57 @@
+@page "/isnthremoved"
+
+@code {
+    string result = "";
+    string style = "display: none;";
+    static int start_ = 2;
+    public static int start { get { return start_; } set { start_ = value; change(); } }
+    static int num = start;
+    static int end_ = 4;
+    public static int end { get { return end_; } set { end_ = value; change(); } }
+    Stopwatch stopwatch = new Stopwatch();
+    static void change()
+    {
+        if (num > end || num < start)
+        {
+            num = start;
+        }
+        if (end < start)
+        {
+            end = start;
+        }
+    }
+    void Calculate()
+    {
+        if (Algorithms.IsPrime(num))
+        {
+            result = "این عدد اول است";
+            style = "display: block;";
+            StateHasChanged();
+            return;
+        }
+        stopwatch.Reset();
+        stopwatch.Start();
+        result = Algorithms.NumIsNthNumberRemoved(num, start, end).ToString() + "امین";
+        stopwatch.Stop();
+        style = "display: block;";
+        StateHasChanged();
+    }
+}
+
+<h2>در غربال بین دو عدد این عدد چندمین عددیست که خط میخورد؟</h2>
+<div class="asker">
+    <label for="start">شروع:</label>
+    <input @bind="start" id="start" type="number" min="2" />
+    <div class="spacer"></div>
+    <label for="end">پایان:</label>
+    <input @bind="end" id="end" type="number" min="4" />
+    <div class="spacer"></div>
+    <label for="num">عدد:</label>
+    <input @bind="num" id="num" type="number" min=@start max=@end />
+    <div class="spacer"></div>
+    <button @onclick="Calculate">محاسبه</button>
+</div>
+<div id="result" style="@style">
+    <p class="answer">جواب: @result</p>
+    <p class="result-stats">زمان محاسبه: @stopwatch.ElapsedMilliseconds میلی ثانیه</p>
+</div>

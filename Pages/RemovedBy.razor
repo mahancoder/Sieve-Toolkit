@@ -1,0 +1,29 @@
+@page "/removedby"
+
+@code {
+    string result = "";
+    string style = "display: none;";
+    int num = 4;
+    Stopwatch stopwatch = new Stopwatch();
+    void Calculate()
+    {
+        stopwatch.Reset();
+        stopwatch.Start();
+        int res = Algorithms.RemovedBy(num);
+        result = res != -1 ? res.ToString() : "این عدد اول است";
+        stopwatch.Stop();
+        style = "display: block;";
+        StateHasChanged();
+    }
+}
+<h2>در روش غربال این عدد توسط چه عددی خط میخورد؟</h2>
+<div class="asker">
+    <label for="num">عدد:</label>
+    <input @bind="num" id="num" type="number" min="4" />
+    <div class="spacer"></div>
+    <button @onclick="Calculate">محاسبه</button>
+</div>
+<div id="result" style="@style">
+    <p class="answer">جواب: @result</p>
+    <p class="result-stats">زمان محاسبه: @stopwatch.ElapsedMilliseconds میلی ثانیه</p>
+</div>

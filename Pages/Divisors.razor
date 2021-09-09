@@ -1,0 +1,39 @@
+@page "/divisors"
+@code {
+    string style = "display: none;";
+    int num = 1;
+    string resultText = "";
+    List<int> result = new List<int>();
+    Stopwatch stopwatch = new Stopwatch();
+    void Calculate()
+    {
+        stopwatch.Reset();
+        resultText = "";
+        stopwatch.Start();
+        result = Algorithms.AllDivisors(num);
+        stopwatch.Stop();
+        for (int i = 0; i < result.Count; i++)
+        {
+            resultText += result[i].ToString();
+            if ((i + 1) != result.Count)
+            {
+                resultText += ", ";
+            }
+        }
+        style = "display: block;";
+        StateHasChanged();
+    }
+}
+<h2>لیست تمام شمارنده های عدد</h2>
+<div class="asker">
+    <label for="num">عدد:</label>
+    <input @bind="num" id="num" type="number" min="2" />
+    <div class="spacer"></div>
+    <button @onclick="Calculate">محاسبه</button>
+</div>
+<div id="result" style="@style">
+    <span class="result-header">شمارنده ها: </span>
+    <p class="list">@resultText</p>
+    <p class="result-stats">تعداد: @result.Count</p>
+    <p class="result-stats">زمان محاسبه: @stopwatch.ElapsedMilliseconds میلی ثانیه</p>
+</div>

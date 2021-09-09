@@ -1,0 +1,61 @@
+@page "/range"
+@code {
+    int start = 2;
+    int end = 2;
+    bool showmore = false;
+    bool hideResult = true;
+    List<int> result = new List<int>();
+    string resultText = "";
+    System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+    void Calculate()
+    {
+        showmore = false;
+        stopwatch.Reset();
+        resultText = "";
+        stopwatch.Start();
+        result = Algorithms.PrimeInRange(start, end);
+        stopwatch.Stop();
+        for (int i = 0; i < Math.Min(result.Count, 100); i++)
+        {
+            resultText += result[i].ToString() + ", ";
+        }
+        resultText = resultText.Remove(resultText.Length - 2);
+        if (result.Count > 100)
+        {
+            resultText += "...";
+            showmore = true;
+        }
+        hideResult = false;
+        StateHasChanged();
+    }
+    void displayall()
+    {
+        showmore = false;
+        resultText = resultText.Replace("...", "").Replace("  ", "");
+        for (int i = 99; i < result.Count; i++)
+        {
+            resultText += result[i].ToString() + ", ";
+        }
+        resultText = resultText.Remove(resultText.Length - 2);
+        hideResult = false;
+        StateHasChanged();
+    }
+}
+
+<h2>پیدا کردن تمام اعداد اول بین دو عدد به روش غربال</h2>
+<div class="asker">
+    <label for="start">شروع:</label>
+    <input type="number" min="2" id="start" @bind="start" />
+    <div class="spacer"></div>
+    <label for="end">پایان:</label>
+    <input type="number" min="2" id="end" @bind="end" />
+    <div class="spacer"></div>
+    <button @onclick="Calculate">محاسبه</button>
+</div>
+<div id="result" hidden="@hideResult">
+    <span class="result-header">اعداد: </span>
+    <p class="list">@resultText<button hidden="@((!showmore))" class="showmore" @onclick="displayall">نمایش
+            همه...</button></p>
+    <p class="result-stats">تعداد: @result.Count</p>
+    <p class="result-stats">زمان محاسبه: @stopwatch.ElapsedMilliseconds میلی ثانیه</p>
+</div>

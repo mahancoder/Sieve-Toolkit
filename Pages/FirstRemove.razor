@@ -1,0 +1,33 @@
+@page "/firstremove"
+
+@code {
+    int start = 4;
+    int end = 4;
+    int result = 0;
+    string style = "display: none;";
+    Stopwatch stopwatch = new Stopwatch();
+    void Calculate()
+    {
+        stopwatch.Reset();
+        stopwatch.Start();
+        result = Algorithms.FirstRemove(start, end);
+        stopwatch.Stop();
+        style = "display: block;";
+        StateHasChanged();
+    }
+
+}
+<h2>در غربال بین دو عدد اولین عددی که خط میخورد چه عددیست؟</h2>
+<div class="asker">
+    <label for="start">شروع:</label>
+    <input type="number" min="4" id="start" @bind="start" />
+    <div class="spacer"></div>
+    <label for="end">پایان:</label>
+    <input type="number" min="4" id="end" @bind="end" />
+    <div class="spacer"></div>
+    <button @onclick="Calculate">محاسبه</button>
+</div>
+<div id="result" style="@style">
+    <p class="answer">جواب: @result</p>
+    <p class="result-stats">زمان محاسبه: @stopwatch.ElapsedMilliseconds میلی ثانیه</p>
+</div>

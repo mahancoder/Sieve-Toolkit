@@ -1,0 +1,27 @@
+@inherits LayoutComponentBase
+@inject IJSRuntime JS
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("init");
+        }
+    }
+}
+<div class="flex-container">
+    <input id="toggler" type="checkbox" />
+    <label for="toggler">
+        <img src="menu-ico.png" class="menu-toggle" />
+    </label>
+    <div class="menu">
+        <Menu />
+    </div>
+    <div class="body">
+        @Body
+    </div>
+</div>
+<div class="copyright-container">
+    <p class="copyright-text">&copy;Mahan Lamee - @DateTime.Now.Year - Contact me at <a
+            href="mailto:mahan.lameie87@gmail.com">mahan.lameie87@gmail.com<img src="link-ico.png" /></a></p>
+</div>
