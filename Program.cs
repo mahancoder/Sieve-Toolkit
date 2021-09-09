@@ -21,8 +21,7 @@ namespace SieveToolkit
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    Console.WriteLine("hi");
-                    webBuilder.UseElectron(args).UseKestrel(options => options.ListenAnyIP(Convert.ToInt32(BridgeSettings.WebPort), opt => opt.UseHttps("localhost.pfx", "mahan1387")));
+                    webBuilder.UseElectron(args);
                     webBuilder.UseStartup<Startup>();
                 });
     }
