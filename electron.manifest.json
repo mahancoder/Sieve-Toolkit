@@ -1,0 +1,42 @@
+{
+    "executable": "SieveToolkit",
+    "splashscreen": {
+        "imageFile": ""
+    },
+    "name": "SieveToolkit",
+    "author": "Mahancoder",
+    "singleInstance": false,
+    "environment": "Production",
+    "build": {
+        "icon": "../../../icon.png",
+        "win": {
+            "icon": "../../../icon.ico"
+        },
+        "linux": {
+            "icon": "../../../icon.png"
+        },
+        "mac": {
+            "icon": "../../../icon.icns"
+        },
+        "appId": "com.SieveToolkit.app",
+        "productName": "SieveToolkit",
+        "copyright": "Copyright © 2021 Mahancoder",
+        "buildVersion": "1.0.0",
+        "compression": "maximum",
+        "directories": {
+            "output": "../../../bin/Desktop"
+        },
+        "extraResources": [{
+            "from": "./bin",
+            "to": "bin",
+            "filter": ["**/*"]
+        }],
+        "files": [{
+                "from": "./ElectronHostHook/node_modules",
+                "to": "ElectronHostHook/node_modules",
+                "filter": ["**/*"]
+            },
+            "**/*"
+        ]
+    }
+}
