@@ -10,7 +10,7 @@ Download a release binary from the [Releases](https://github.com/mahancoder/Siev
 To test the app while working, run `dotnet run` to open te app in the browser. To build the app, follow the [Electron.Net build instructions](https://github.com/mahancoder/Sieve-Toolkit/releases/)
 
 ## Technology
-This app uses the [Electron.Net](https://github.com/ElectronNET/Electron.NET) project along with asp.Net Core Blazor to provide a real-time HTML-based UI with fast C# Math calculations in the backend.
+This app uses the [Electron.Net](https://github.com/ElectronNET/Electron.NET) project along with Asp.Net Core Blazor to provide a real-time HTML-based UI with fast C# Math calculations in the backend.
 
 ### Algorithms
 The heart of this app, which is the math processing, is done in the `Algorithm.cs` file. I've used efficient methods to calculate the results, and also multi-threading when possible.
