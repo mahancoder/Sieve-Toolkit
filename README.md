@@ -7,7 +7,7 @@ This is a simple electron-based app for some common functions of the Sieve algor
 ## Usage
 Download a release binary from the [Releases](https://github.com/mahancoder/Sieve-Toolkit/releases/) section.
 ### Building from source
-To test the app while working, run `dotnet run` to open te app in the browser. To build the app, follow the [Electron.Net build instructions](https://github.com/mahancoder/Sieve-Toolkit/releases/)
+To test the app while working, run `dotnet run` to open the app in the browser. To build the app, follow the [Electron.Net build instructions](https://github.com/ElectronNET/Electron.NET#-build)
 
 ## Technology
 This app uses the [Electron.Net](https://github.com/ElectronNET/Electron.NET) project along with Asp.Net Core Blazor to provide a real-time HTML-based UI with fast C# Math calculations in the backend.
